@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/jpg" href="images/logo.jpg">
+  <title>Spécialités - Cabinet Dermatologique</title>
+  
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+  <!-- Chatbot CSS -->
+  <link rel="stylesheet" href="chatbot.css">
+  <!-- Navbar Fixed CSS - DOIT être chargé APRÈS Bootstrap pour override -->
+  <link rel="stylesheet" href="navbar-fixed.css">
+  <!-- Animations médicales 3D -->
+  <link rel="stylesheet" href="medical-animations.css">
+  
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f8f9fa;
+    }
+    .specialite-card {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border: none;
+      border-radius: 15px;
+    }
+    .specialite-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15) !important;
+    }
+    .specialite-card h2 {
+      color: #1976d2;
+      font-weight: 600;
+    }
+    .specialite-images img {
+      transition: transform 0.3s ease;
+      border-radius: 10px;
+    }
+    .specialite-images img:hover {
+      transform: scale(1.05);
+    }
+    .arabic {
+      direction: rtl;
+      text-align: right;
+    }
+    .back-to-top {
+      position: fixed;
+      bottom: 100px;
+      right: 30px;
+      width: 50px;
+      height: 50px;
+      background-color: #1976d2;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      font-size: 24px;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      transition: all 0.3s ease;
+      z-index: 999;
+      display: none;
+    }
+    .back-to-top:hover {
+      background-color: #125ea5;
+      transform: translateY(-3px) scale(1.1);
+    }
+    .back-to-top.show {
+      display: block;
+    }
+  </style>
+</head>
+<body class="has-fixed-navbar">
+  <!-- Navbar -->
+  <nav class="navbar professional-navbar navbar-expand-lg navbar-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center" href="index.html">
+        <img src="images/logo.jpg" alt="Logo" class="me-2">
+        <span class="d-none d-md-inline">Dr. Asma Mejouar</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">Accueil</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="services.html">Services</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="specialites.html">Spécialités</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="contact.html">Contact</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="faq.html">FAQ</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <div class="medical-3d-side-column left" aria-hidden="true">
+    <video class="medical-3d-video" autoplay muted loop playsinline preload="auto">
+      <source src="https://cdn.coverr.co/videos/coverr-3d-blue-particles-network-5177/1080p.mp4" type="video/mp4">
+    </video>
+    <div class="medical-3d-video-overlay"></div>
+  </div>
+  <div class="medical-3d-side-column right" aria-hidden="true">
+    <video class="medical-3d-video" autoplay muted loop playsinline preload="auto">
+      <source src="https://cdn.coverr.co/videos/coverr-hud-interface-5717/1080p.mp4" type="video/mp4">
+    </video>
+    <div class="medical-3d-video-overlay"></div>
+  </div>
+
+  <section class="medical-3d-banner" data-animation="diagnostic">
+    <div class="container medical-3d-layout">
+      <div class="medical-3d-content">
+        <span class="badge">Spécialités 3D</span>
+        <h2>Comprendre chaque expertise en volume</h2>
+        <p>Allergologie, pédiatrie, vénéréologie&nbsp;: une animation 3D illustre les mécanismes cutanés que nous traitons.</p>
+        <p>Ces représentations facilitent l’éducation thérapeutique des patients et des familles.</p>
+        <div class="highlights">
+          <span><i class="bi bi-heart-pulse"></i> Pédiatrie</span>
+          <span><i class="bi bi-droplet-half"></i> Allergies</span>
+          <span><i class="bi bi-gender-ambiguous"></i> Vénéréologie</span>
+        </div>
+      </div>
+      <div class="medical-3d-canvas" aria-hidden="true"></div>
+    </div>
+  </section>
+
+  <div class="container py-5">
+    <h1 class="text-center text-primary mb-5">Nos Spécialités</h1>
+    
+    <div class="card specialite-card shadow-lg mb-5">
+      <div class="card-body p-4">
+        <h2 class="mb-4">Maladies de la peau, ongles et cheveux</h2>
+        <div class="row g-3 mb-4">
+          <div class="col-md-4">
+            <img src="images/skin.jpg" alt="skin" class="img-fluid rounded shadow-sm" style="width: 100%; height: 250px; object-fit: cover;">
+          </div>
+          <div class="col-md-4">
+            <img src="images/cheveux.jpg" alt="cheveux" class="img-fluid rounded shadow-sm" style="width: 100%; height: 250px; object-fit: cover;">
+          </div>
+          <div class="col-md-4">
+            <img src="images/ongles.jpg" alt="ongles" class="img-fluid rounded shadow-sm" style="width: 100%; height: 250px; object-fit: cover;">
+          </div>
+        </div>
+        <p class="mb-3">Nous prenons en charge l'ensemble des affections dermatologiques touchant la peau, les ongles et les cheveux. Cela inclut les problèmes courants comme l'eczéma, le psoriasis, la chute de cheveux, les mycoses, ainsi que les maladies plus complexes nécessitant un suivi médical spécialisé. Notre objectif est d'offrir des traitements adaptés à chaque patient pour améliorer la santé et l'apparence de la peau et des phanères.</p>
+        <p class="arabic">نحن نهتم بجميع الأمراض الجلدية التي تصيب الجلد والأظافر والشعر. يشمل ذلك المشاكل الشائعة مثل الأكزيما، الصدفية، تساقط الشعر، الفطريات، بالإضافة إلى الأمراض المعقدة التي تتطلب متابعة طبية متخصصة. هدفنا هو توفير علاجات مناسبة لكل مريض لتحسين صحة ومظهر الجلد والشعر والأظافر</p>
+      </div>
+    </div>
+
+    <div class="card specialite-card shadow-lg mb-5">
+      <div class="card-body p-4">
+        <h2 class="mb-4">Allergies cutanées</h2>
+        <div class="row g-3 mb-4">
+          <div class="col-md-4">
+            <img src="images/allergie.jpg" alt="Allergies cutanées" class="img-fluid rounded shadow-sm" style="width: 100%; height: 250px; object-fit: cover;">
+          </div>
+          <div class="col-md-4">
+            <img src="images/Allergies cutanées2.jpg" alt="Allergies cutanées" class="img-fluid rounded shadow-sm" style="width: 100%; height: 250px; object-fit: cover;">
+          </div>
+          <div class="col-md-4">
+            <img src="images/Allergies cutanées3.jpg" alt="Allergies cutanées" class="img-fluid rounded shadow-sm" style="width: 100%; height: 250px; object-fit: cover;">
+          </div>
+        </div>
+        <p class="mb-3">Les allergies cutanées se manifestent par des rougeurs, démangeaisons, éruptions ou irritations. Nous proposons un diagnostic précis via des tests cutanés (tests d'allergie, patch tests) pour identifier la cause et fournir un traitement personnalisé. L'intervention médicale vise à soulager les symptômes et à prévenir les récidives.</p>
+        <p class="arabic">تظهر الحساسية الجلدية في شكل احمرار، حكة، بثور أو تهيج. نحن نقدم تشخيصًا دقيقًا عبر اختبارات جلدية (اختبارات الحساسية، اختبار الرقعة) لتحديد السبب وتوفير علاج مخصص. يهدف التدخل الطبي إلى تخفيف الأعراض ومنع تكرارها.</p>
+      </div>
+    </div>
+
+    <div class="card specialite-card shadow-lg mb-5">
+      <div class="card-body p-4">
+        <h2 class="mb-4">Chirurgie dermatologique</h2>
+        <div class="row g-3 mb-4">
+          <div class="col-md-4">
+            <img src="images/CD.jpg" alt="Chirurgie dermatologique" class="img-fluid rounded shadow-sm" style="width: 100%; height: 250px; object-fit: cover;">
+          </div>
+          <div class="col-md-4">
+            <img src="images/Chirurgie dermatologique2.jpg" alt="Chirurgie dermatologique" class="img-fluid rounded shadow-sm" style="width: 100%; height: 250px; object-fit: cover;">
+          </div>
+          <div class="col-md-4">
+            <img src="images/Chirurgie dermatologique3.jpg" alt="Chirurgie dermatologique" class="img-fluid rounded shadow-sm" style="width: 100%; height: 250px; object-fit: cover;">
+          </div>
+        </div>
+        <p class="mb-3">La chirurgie dermatologique consiste à enlever les lésions cutanées bénignes ou suspectes (grains de beauté, kystes, lipomes, tumeurs cutanées). Elle permet à la fois un geste thérapeutique et esthétique, en assurant une cicatrisation optimale et une analyse histologique si nécessaire.</p>
+        <p class="arabic">الجراحة الجلدية تهدف إلى إزالة الآفات الجلدية الحميدة أو المشبوهة (الشامات، الأكياس، الأورام الدهنية، الأورام الجلدية). تُمكّن هذه التدخلات من تحقيق علاج طبي وجمالي في نفس الوقت، مع ضمان التئام جيد للجرح وإجراء فحص نسيجي عند الحاجة.</p>
+      </div>
+    </div>
+
+    <div class="card specialite-card shadow-lg mb-5">
+      <div class="card-body p-4">
+        <h2 class="mb-4">Maladies sexuellement transmissibles</h2>
+        <div class="row g-3 mb-4">
+          <div class="col-md-4">
+            <img src="images/mst.jpg" alt="Maladies sexuellement transmissibles" class="img-fluid rounded shadow-sm" style="width: 100%; height: 250px; object-fit: cover;">
+          </div>
+          <div class="col-md-4">
+            <img src="images/Maladies sexuellement transmissibles2.jpg" alt="Maladies sexuellement transmissibles" class="img-fluid rounded shadow-sm" style="width: 100%; height: 250px; object-fit: cover;">
+          </div>
+          <div class="col-md-4">
+            <img src="images/Maladies sexuellement transmissibles3.jpg" alt="Maladies sexuellement transmissibles" class="img-fluid rounded shadow-sm" style="width: 100%; height: 250px; object-fit: cover;">
+          </div>
+        </div>
+        <p class="mb-3">Nous assurons le dépistage, le diagnostic et le traitement des maladies sexuellement transmissibles (MST), telles que l'herpès, la syphilis, la chlamydia ou le VIH. Une prise en charge confidentielle et personnalisée est proposée, associée à des conseils de prévention et d'éducation à la santé sexuelle.</p>
+        <p class="arabic">نقوم بالكشف، التشخيص والعلاج للأمراض المنقولة جنسيًا مثل الهربس، الزهري، الكلاميديا أو فيروس نقص المناعة. نقدم متابعة طبية بسرية تامة وبأسلوب شخصي، مع تقديم نصائح للوقاية والتثقيف الصحي الجنسي.</p>
+      </div>
+    </div>
+
+    <div class="card specialite-card shadow-lg mb-5">
+      <div class="card-body p-4">
+        <h2 class="mb-4">Dermatologie pédiatrique</h2>
+        <div class="row g-3 mb-4">
+          <div class="col-md-4">
+            <img src="images/enfant.jpg" alt="Dermatologie pédiatrique" class="img-fluid rounded shadow-sm" style="width: 100%; height: 250px; object-fit: cover;">
+          </div>
+          <div class="col-md-4">
+            <img src="images/Dermatologie pédiatrique2.jpg" alt="Dermatologie pédiatrique" class="img-fluid rounded shadow-sm" style="width: 100%; height: 250px; object-fit: cover;">
+          </div>
+          <div class="col-md-4">
+            <img src="images/Dermatologie pédiatrique3.jpg" alt="Dermatologie pédiatrique" class="img-fluid rounded shadow-sm" style="width: 100%; height: 250px; object-fit: cover;">
+          </div>
+        </div>
+        <p class="mb-3">La dermatologie pédiatrique prend en charge les affections cutanées chez les nourrissons, enfants et adolescents. Cela comprend l'eczéma atopique, les infections cutanées, les taches congénitales, les verrues et l'acné juvénile. Notre approche est adaptée à l'âge de l'enfant, douce et rassurante pour les parents.</p>
+        <p class="arabic">الأمراض الجلدية للأطفال تهتم بعلاج مشاكل الجلد عند الرضع، الأطفال والمراهقين. يشمل ذلك الأكزيما التأتبية، الالتهابات الجلدية، البقع الخُلقية، الثآليل وحب الشباب عند المراهقين. نعتمد على أسلوب علاجي لطيف يتناسب مع عمر الطفل ويطمئن الأهل</p>
+      </div>
+    </div>
+
+    <div class="card specialite-card shadow-lg mb-5">
+      <div class="card-body p-4">
+        <h2 class="mb-4">Dermatologie esthétique</h2>
+        <div class="row g-3 mb-4">
+          <div class="col-md-4">
+            <img src="images/esthetique.jpg" alt="Dermatologie esthétique" class="img-fluid rounded shadow-sm" style="width: 100%; height: 250px; object-fit: cover;">
+          </div>
+          <div class="col-md-4">
+            <img src="images/Dermatologie esthétique2.jpg" alt="Dermatologie esthétique" class="img-fluid rounded shadow-sm" style="width: 100%; height: 250px; object-fit: cover;">
+          </div>
+          <div class="col-md-4">
+            <img src="images/Dermatologie esthétique3.jpg" alt="Dermatologie esthétique" class="img-fluid rounded shadow-sm" style="width: 100%; height: 250px; object-fit: cover;">
+          </div>
+        </div>
+        <p class="mb-3">La dermatologie esthétique regroupe des soins visant à améliorer l'apparence de la peau : traitement des rides, cicatrices, taches pigmentaires, perte de volume, relâchement cutané. Nous utilisons des techniques modernes comme les injections, le peeling, le laser et la mésothérapie, tout en respectant le naturel et l'harmonie du visage.</p>
+        <p class="arabic">الأمراض الجلدية التجميلية تشمل علاجات تهدف إلى تحسين مظهر البشرة: معالجة التجاعيد، الندوب، البقع الصبغية، فقدان الحجم وترهل الجلد. نعتمد على تقنيات حديثة مثل الحقن، التقشير الكيميائي، الليزر والميزوثيرابي، مع الحفاظ على مظهر طبيعي ومتناسق للوجه.</p>
+      </div>
+    </div>
+  </div>
+
+  <footer class="text-center py-4 mt-5 footer-3d">
+    <div class="container footer-inner">
+      <p class="mb-0">&copy; 2025 Cabinet Dermatologique - Tous droits réservés.</p>
+    </div>
+  </footer>
+
+  <button class="back-to-top" id="backToTop">↑</button>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  
+  <!-- Chatbot JS -->
+  <script src="chatbot.js"></script>
+  <!-- THREE.js + animations 3D -->
+  <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js" defer></script>
+  <script src="medical-animations.js" defer></script>
+  <script src="interactive-effects.js" defer></script>
+  
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const backToTop = document.getElementById('backToTop');
+      
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 300) {
+          backToTop.classList.add('show');
+        } else {
+          backToTop.classList.remove('show');
+        }
+      });
+      
+      backToTop.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+
+      // Fade-in animation
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+          }
+        });
+      }, { threshold: 0.1 });
+
+      document.querySelectorAll('.specialite-card').forEach(card => {
+        card.style.opacity = '0';
+        card.style.transform = 'translateY(30px)';
+        card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        observer.observe(card);
+      });
+    });
+  </script>
+</body>
+</html>

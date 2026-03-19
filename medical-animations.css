@@ -1,0 +1,280 @@
+/* ============================================
+   Animations médicales 3D - Bannière globale
+   ============================================ */
+
+.medical-3d-banner {
+  position: relative;
+  overflow: hidden;
+  background: radial-gradient(circle at top left, rgba(30, 136, 229, 0.35), rgba(13, 71, 161, 0.85));
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+  padding: 2.5rem 0;
+  isolation: isolate;
+}
+
+.medical-3d-layout {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  align-items: center;
+}
+
+.medical-3d-banner::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, rgba(30, 136, 229, 0.3), rgba(13, 71, 161, 0.6));
+  opacity: 0.75;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.medical-3d-content {
+  position: relative;
+  z-index: 2;
+  padding: 0 1rem;
+}
+
+.medical-3d-content .badge {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 999px;
+  padding: 0.35rem 1rem;
+  font-size: 0.85rem;
+  letter-spacing: 0.08rem;
+  text-transform: uppercase;
+}
+
+.medical-3d-content h2 {
+  font-weight: 700;
+  font-size: clamp(1.75rem, 3vw, 2.3rem);
+  margin: 1rem 0 0.75rem;
+}
+
+.medical-3d-content p {
+  margin-bottom: 0.4rem;
+  opacity: 0.95;
+}
+
+.medical-3d-content .highlights {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  margin-top: 1rem;
+}
+
+.medical-3d-content .highlights span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  border-radius: 999px;
+  padding: 0.4rem 0.9rem;
+  background: rgba(255, 255, 255, 0.12);
+  font-size: 0.9rem;
+}
+
+.medical-3d-canvas {
+  position: relative;
+  z-index: 2;
+  min-height: 260px;
+  height: 100%;
+}
+
+.medical-3d-canvas canvas {
+  width: 100% !important;
+  height: 100% !important;
+  display: block;
+}
+
+/* ======== LATERAL RIBBONS ======== */
+.medical-3d-side-column {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  width: 120px;
+  pointer-events: none;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(20px);
+  opacity: 0.65;
+  z-index: 2;
+  mix-blend-mode: screen;
+  transform: translate3d(0, 0, 0);
+  overflow: hidden;
+  border-radius: 0 30px 30px 0;
+}
+
+.medical-3d-side-column.right {
+  border-radius: 30px 0 0 30px;
+}
+
+.medical-3d-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.85;
+  filter: saturate(1.4);
+}
+
+.medical-3d-video-overlay {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(6, 20, 44, 0.2), rgba(30, 136, 229, 0.55));
+  mix-blend-mode: color;
+  animation: ribbonPulse 18s ease-in-out infinite;
+}
+
+.medical-3d-side-column.left {
+  left: 0;
+}
+
+.medical-3d-side-column.right {
+  right: 0;
+  animation-delay: 4s;
+}
+
+@keyframes ribbonPulse {
+  0% {
+    opacity: 0.35;
+    transform: scaleY(1);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scaleY(1.08);
+  }
+  100% {
+    opacity: 0.35;
+    transform: scaleY(1);
+  }
+}
+
+@media (max-width: 1200px) {
+  .medical-3d-side-column {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .medical-3d-video {
+    animation: none !important;
+  }
+  .medical-3d-video-overlay,
+  .medical-3d-side-column {
+    animation: none !important;
+  }
+  .medical-3d-video {
+    opacity: 0.5;
+  }
+}
+
+/* ======== SCROLL DECORATIONS ======== */
+[data-scroll-animate] {
+  position: relative;
+  transform-style: preserve-3d;
+}
+
+[data-scroll-animate].is-visible {
+  animation: scrollReveal 1s ease both;
+}
+
+@keyframes scrollReveal {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ======== CARDS ======== */
+[data-3d-card] {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  transition: transform 0.45s ease, box-shadow 0.45s ease;
+  box-shadow: 0 20px 50px rgba(13, 71, 161, 0.15);
+}
+
+[data-3d-card]::before,
+[data-3d-card]::after {
+  content: "";
+  position: absolute;
+  inset: 1px;
+  border-radius: inherit;
+  z-index: -1;
+  transition: opacity 0.4s ease;
+}
+
+[data-3d-card]::before {
+  background: radial-gradient(circle at var(--glow-x, 50%) var(--glow-y, 50%), rgba(144, 202, 249, 0.35), transparent 60%);
+  opacity: 0;
+}
+
+[data-3d-card]::after {
+  background: linear-gradient(135deg, rgba(30, 136, 229, 0.08), rgba(13, 71, 161, 0.25));
+  opacity: 0.8;
+}
+
+[data-3d-card].tilt-active::before {
+  opacity: 1;
+}
+
+[data-3d-card].tilt-active {
+  box-shadow: 0 25px 70px rgba(13, 71, 161, 0.2);
+}
+
+/* ======== FOOTER ======== */
+.footer-3d {
+  position: relative;
+  background: radial-gradient(circle at top, rgba(13, 71, 161, 0.95), #0a1f44);
+  color: #cfd8dc;
+  overflow: hidden;
+}
+
+.footer-3d::before,
+.footer-3d::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.3;
+}
+
+.footer-3d::before {
+  width: 320px;
+  height: 320px;
+  background: #1e88e5;
+  top: -120px;
+  left: -60px;
+}
+
+.footer-3d::after {
+  width: 260px;
+  height: 260px;
+  background: #64ffda;
+  bottom: -120px;
+  right: -40px;
+}
+
+.footer-3d .footer-inner {
+  position: relative;
+  z-index: 2;
+}
+
+@media (max-width: 767.98px) {
+  .medical-3d-banner {
+    padding: 2rem 0 2.5rem;
+  }
+
+  .medical-3d-content {
+    text-align: center;
+  }
+
+  .medical-3d-content .highlights {
+    justify-content: center;
+  }
+}
+

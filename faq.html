@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/jpg" href="images/logo.jpg">
+  <title>FAQ - Questions Fréquentes - Cabinet Dermatologique</title>
+  
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+  <!-- Chatbot CSS -->
+  <link rel="stylesheet" href="chatbot.css">
+  <!-- Navbar Fixed CSS - DOIT être chargé APRÈS Bootstrap pour override -->
+  <link rel="stylesheet" href="navbar-fixed.css">
+  <!-- Animations médicales 3D -->
+  <link rel="stylesheet" href="medical-animations.css">
+  
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f8f9fa;
+    }
+    .faq-header {
+      background: linear-gradient(135deg, #1976d2 0%, #125ea5 100%);
+      color: white;
+      padding: 60px 0;
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    .search-container {
+      max-width: 600px;
+      margin: 0 auto 40px;
+    }
+    .search-box {
+      position: relative;
+    }
+    .search-box input {
+      padding: 15px 50px 15px 20px;
+      border: 2px solid #e0e0e0;
+      border-radius: 50px;
+      font-size: 16px;
+      width: 100%;
+      transition: all 0.3s ease;
+    }
+    .search-box input:focus {
+      border-color: #1976d2;
+      box-shadow: 0 0 0 0.2rem rgba(25, 118, 210, 0.15);
+      outline: none;
+    }
+    .search-box .search-icon {
+      position: absolute;
+      right: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #1976d2;
+      font-size: 20px;
+    }
+    .faq-item {
+      background: white;
+      border-radius: 15px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+    .faq-item:hover {
+      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+      transform: translateY(-2px);
+    }
+    .faq-question {
+      padding: 20px 25px;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: white;
+      border: none;
+      width: 100%;
+      text-align: left;
+      font-size: 18px;
+      font-weight: 600;
+      color: #333;
+      transition: background 0.3s ease;
+    }
+    .faq-question:hover {
+      background: #f8f9fa;
+    }
+    .faq-question i {
+      color: #1976d2;
+      transition: transform 0.3s ease;
+    }
+    .faq-question.active i {
+      transform: rotate(180deg);
+    }
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease, padding 0.3s ease;
+      padding: 0 25px;
+    }
+    .faq-answer.show {
+      max-height: 1000px;
+      padding: 0 25px 25px;
+    }
+    .faq-answer-content {
+      color: #666;
+      line-height: 1.8;
+      padding-top: 15px;
+    }
+    .faq-answer-content .arabic {
+      direction: rtl;
+      text-align: right;
+      margin-top: 15px;
+      padding-top: 15px;
+      border-top: 1px solid #e0e0e0;
+    }
+    .faq-category {
+      margin-bottom: 50px;
+    }
+    .faq-category-title {
+      color: #1976d2;
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 30px;
+      padding-bottom: 15px;
+      border-bottom: 3px solid #1976d2;
+    }
+    .no-results {
+      text-align: center;
+      padding: 60px 20px;
+      color: #999;
+    }
+    .no-results i {
+      font-size: 64px;
+      margin-bottom: 20px;
+      color: #ddd;
+    }
+    .faq-item.hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body class="has-fixed-navbar">
+  <!-- Navbar -->
+  <nav class="navbar professional-navbar navbar-expand-lg navbar-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center" href="index.html">
+        <img src="images/logo.jpg" alt="Logo" class="me-2">
+        <span class="d-none d-md-inline">Dr. Asma Mejouar</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">Accueil</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="services.html">Services</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="specialites.html">Spécialités</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="contact.html">Contact</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="faq.html">FAQ</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <div class="medical-3d-side-column left" aria-hidden="true">
+    <video class="medical-3d-video" autoplay muted loop playsinline preload="auto">
+      <source src="https://cdn.coverr.co/videos/coverr-3d-blue-particles-network-5177/1080p.mp4" type="video/mp4">
+    </video>
+    <div class="medical-3d-video-overlay"></div>
+  </div>
+  <div class="medical-3d-side-column right" aria-hidden="true">
+    <video class="medical-3d-video" autoplay muted loop playsinline preload="auto">
+      <source src="https://cdn.coverr.co/videos/coverr-hud-interface-5717/1080p.mp4" type="video/mp4">
+    </video>
+    <div class="medical-3d-video-overlay"></div>
+  </div>
+
+  <section class="medical-3d-banner" data-animation="faq">
+    <div class="container medical-3d-layout">
+      <div class="medical-3d-content">
+        <span class="badge">FAQ immersive</span>
+        <h2>Des réponses animées pour mieux comprendre</h2>
+        <p>Chaque question fréquente est accompagnée d’une visualisation 3D qui illustre l’organe ciblé ou le déroulé du soin.</p>
+        <p>Les animations rendent plus claires les étapes de récupération, les effets secondaires et les contre-indications.</p>
+        <div class="highlights">
+          <span><i class="bi bi-question-circle"></i> Pédagogie</span>
+          <span><i class="bi bi-lightbulb"></i> Clarté</span>
+          <span><i class="bi bi-emoji-smile"></i> Réassurance</span>
+        </div>
+      </div>
+      <div class="medical-3d-canvas" aria-hidden="true"></div>
+    </div>
+  </section>
+
+  <!-- Header -->
+  <div class="faq-header">
+    <div class="container">
+      <h1 class="display-4 mb-3">
+        <i class="bi bi-question-circle-fill me-3"></i>
+        Questions Fréquentes
+      </h1>
+      <p class="lead">Trouvez rapidement les réponses à vos questions</p>
+    </div>
+  </div>
+
+  <!-- Search Box -->
+  <div class="container">
+    <div class="search-container">
+      <div class="search-box">
+        <input 
+          type="text" 
+          id="faq-search" 
+          placeholder="Rechercher une question..."
+          autocomplete="off"
+        >
+        <i class="bi bi-search search-icon"></i>
+      </div>
+    </div>
+
+    <!-- FAQ Content -->
+    <div id="faq-container">
+      <!-- Catégorie: Rendez-vous -->
+      <div class="faq-category">
+        <h2 class="faq-category-title">
+          <i class="bi bi-calendar-check me-2"></i>
+          Rendez-vous
+        </h2>
+        
+        <div class="faq-item" data-category="rendez-vous">
+          <button class="faq-question">
+            <span>Comment prendre un rendez-vous ?</span>
+            <i class="bi bi-chevron-down"></i>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-content">
+              <p>Vous pouvez prendre un rendez-vous de plusieurs façons :</p>
+              <ul>
+                <li><strong>Par WhatsApp :</strong> 0524408296 / 0661063999</li>
+                <li><strong>Par email :</strong> asmamejouar@gmail.com</li>
+                <li><strong>Par téléphone :</strong> Appelez-nous directement</li>
+                <li><strong>Via le formulaire de contact :</strong> Sur notre site web</li>
+              </ul>
+              <p class="arabic">
+                يمكنك حجز موعد بعدة طرق:<br/>
+                • عبر الواتساب: 0524408296 / 0661063999<br/>
+                • عبر البريد الإلكتروني: asmamejouar@gmail.com<br/>
+                • عبر الهاتف: اتصل بنا مباشرة<br/>
+                • عبر نموذج الاتصال: على موقعنا الإلكتروني
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item" data-category="rendez-vous">
+          <button class="faq-question">
+            <span>Quels sont les horaires de consultation ?</span>
+            <i class="bi bi-chevron-down"></i>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-content">
+              <p>Pour connaître nos horaires d'ouverture, veuillez nous contacter directement par téléphone ou WhatsApp. Nous serons ravis de vous renseigner sur les disponibilités.</p>
+              <p class="arabic">
+                لمعرفة أوقات الاستشارة، يرجى الاتصال بنا مباشرة عبر الهاتف أو الواتساب. سنكون سعداء لإعلامك بالتواريخ المتاحة.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item" data-category="rendez-vous">
+          <button class="faq-question">
+            <span>Puis-je annuler ou reporter mon rendez-vous ?</span>
+            <i class="bi bi-chevron-down"></i>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-content">
+              <p>Oui, vous pouvez annuler ou reporter votre rendez-vous. Nous vous demandons de nous prévenir au moins 24 heures à l'avance pour permettre à d'autres patients de bénéficier du créneau. Contactez-nous par WhatsApp ou téléphone.</p>
+              <p class="arabic">
+                نعم، يمكنك إلغاء أو تأجيل موعدك. نطلب منك إعلامنا قبل 24 ساعة على الأقل للسماح لمرضى آخرين بالاستفادة من الموعد. اتصل بنا عبر الواتساب أو الهاتف.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Catégorie: Services -->
+      <div class="faq-category">
+        <h2 class="faq-category-title">
+          <i class="bi bi-heart-pulse me-2"></i>
+          Services et Traitements
+        </h2>
+
+        <div class="faq-item" data-category="services">
+          <button class="faq-question">
+            <span>Quels types de problèmes cutanés traitez-vous ?</span>
+            <i class="bi bi-chevron-down"></i>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-content">
+              <p>Nous traitons une large gamme de problèmes cutanés, notamment :</p>
+              <ul>
+                <li>Acné et cicatrices d'acné</li>
+                <li>Eczéma et psoriasis</li>
+                <li>Allergies cutanées</li>
+                <li>Infections cutanées</li>
+                <li>Problèmes de cheveux et d'ongles</li>
+                <li>Maladies sexuellement transmissibles</li>
+                <li>Traitements esthétiques (rides, taches, etc.)</li>
+              </ul>
+              <p class="arabic">
+                نعالج مجموعة واسعة من مشاكل الجلد، بما في ذلك:<br/>
+                • حب الشباب وندوب حب الشباب<br/>
+                • الإكزيما والصدفية<br/>
+                • الحساسية الجلدية<br/>
+                • الالتهابات الجلدية<br/>
+                • مشاكل الشعر والأظافر<br/>
+                • الأمراض المنقولة جنسياً<br/>
+                • العلاجات التجميلية (التجاعيد، البقع، إلخ)
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item" data-category="services">
+          <button class="faq-question">
+            <span>Combien de séances sont nécessaires pour un traitement au laser ?</span>
+            <i class="bi bi-chevron-down"></i>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-content">
+              <p>Le nombre de séances dépend du type de traitement et de votre condition. En général, les traitements au laser nécessitent entre 3 à 6 séances espacées de 4 à 6 semaines. Le Dr. Mejouar évaluera votre cas lors de la première consultation et vous donnera un plan de traitement personnalisé.</p>
+              <p class="arabic">
+                يعتمد عدد الجلسات على نوع العلاج وحالتك. بشكل عام، تتطلب علاجات الليزر ما بين 3 إلى 6 جلسات متباعدة من 4 إلى 6 أسابيع. ستقوم الدكتورة مجوار بتقييم حالتك في الاستشارة الأولى وستعطيك خطة علاج شخصية.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item" data-category="services">
+          <button class="faq-question">
+            <span>Les traitements sont-ils douloureux ?</span>
+            <i class="bi bi-chevron-down"></i>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-content">
+              <p>La plupart de nos traitements sont bien tolérés. Certains traitements comme le laser ou le peeling peuvent causer une légère sensation de picotement ou de chaleur, mais ils sont généralement très supportables. Pour les interventions plus invasives, une anesthésie locale est utilisée pour votre confort.</p>
+              <p class="arabic">
+                معظم علاجاتنا جيدة التحمل. بعض العلاجات مثل الليزر أو التقشير قد تسبب إحساساً خفيفاً بالوخز أو الحرارة، لكنها عادة ما تكون محتملة جداً. للتدخلات الأكثر توغلاً، يتم استخدام تخدير موضعي لراحتك.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item" data-category="services">
+          <button class="faq-question">
+            <span>Quels sont les délais de récupération après un traitement ?</span>
+            <i class="bi bi-chevron-down"></i>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-content">
+              <p>Les délais de récupération varient selon le type de traitement :</p>
+              <ul>
+                <li><strong>Injections esthétiques :</strong> Aucun temps d'arrêt, retour immédiat aux activités</li>
+                <li><strong>Peeling chimique :</strong> 2-7 jours selon l'intensité</li>
+                <li><strong>Laser :</strong> 1-3 jours de rougeur légère</li>
+                <li><strong>Chirurgie dermatologique :</strong> 7-14 jours selon la procédure</li>
+              </ul>
+              <p>Le Dr. Mejouar vous donnera des instructions précises pour votre cas.</p>
+              <p class="arabic">
+                تختلف أوقات التعافي حسب نوع العلاج:<br/>
+                • الحقن التجميلية: لا يوجد وقت توقف، العودة الفورية للأنشطة<br/>
+                • التقشير الكيميائي: 2-7 أيام حسب الشدة<br/>
+                • الليزر: 1-3 أيام من الاحمرار الخفيف<br/>
+                • الجراحة الجلدية: 7-14 يوماً حسب الإجراء
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Catégorie: Tarifs -->
+      <div class="faq-category">
+        <h2 class="faq-category-title">
+          <i class="bi bi-currency-euro me-2"></i>
+          Tarifs et Paiement
+        </h2>
+
+        <div class="faq-item" data-category="tarifs">
+          <button class="faq-question">
+            <span>Quels sont les tarifs des consultations et traitements ?</span>
+            <i class="bi bi-chevron-down"></i>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-content">
+              <p>Les tarifs varient selon le type de consultation et de traitement. Pour obtenir des informations précises sur les prix, veuillez nous contacter directement. Nous serons heureux de vous fournir un devis personnalisé adapté à vos besoins.</p>
+              <p class="arabic">
+                تختلف الأسعار حسب نوع الاستشارة والعلاج. للحصول على معلومات دقيقة حول الأسعار، يرجى الاتصال بنا مباشرة. سنكون سعداء لتزويدك بعرض أسعار شخصي يناسب احتياجاتك.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item" data-category="tarifs">
+          <button class="faq-question">
+            <span>Quels modes de paiement acceptez-vous ?</span>
+            <i class="bi bi-chevron-down"></i>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-content">
+              <p>Nous acceptons les paiements en espèces et par carte bancaire. Pour plus d'informations sur les modes de paiement disponibles, contactez-nous.</p>
+              <p class="arabic">
+                نقبل المدفوعات نقداً وبالبطاقة المصرفية. لمزيد من المعلومات حول طرق الدفع المتاحة، اتصل بنا.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Catégorie: Général -->
+      <div class="faq-category">
+        <h2 class="faq-category-title">
+          <i class="bi bi-info-circle me-2"></i>
+          Informations Générales
+        </h2>
+
+        <div class="faq-item" data-category="general">
+          <button class="faq-question">
+            <span>Où se trouve le cabinet ?</span>
+            <i class="bi bi-chevron-down"></i>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-content">
+              <p>Notre cabinet est situé à :</p>
+              <p><strong>Adresse :</strong> J24J+X68, Marrakech, Maroc</p>
+              <p>Vous pouvez consulter la carte sur notre page de contact pour trouver l'itinéraire exact.</p>
+              <p class="arabic">
+                يقع عيادتنا في:<br/>
+                العنوان: J24J+X68، مراكش، المغرب<br/>
+                يمكنك الاطلاع على الخريطة في صفحة الاتصال للعثور على المسار الدقيق.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item" data-category="general">
+          <button class="faq-question">
+            <span>Le Dr. Mejouar accepte-t-elle les enfants ?</span>
+            <i class="bi bi-chevron-down"></i>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-content">
+              <p>Oui, le Dr. Asma Mejouar est spécialisée en dermatologie pédiatrique et accepte les consultations pour les nourrissons, enfants et adolescents. Elle adapte son approche et ses traitements à l'âge de l'enfant.</p>
+              <p class="arabic">
+                نعم، الدكتورة أسماء مجوار متخصصة في الأمراض الجلدية للأطفال وتقبل الاستشارات للرضع والأطفال والمراهقين. تكيف نهجها وعلاجاتها مع عمر الطفل.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item" data-category="general">
+          <button class="faq-question">
+            <span>Dois-je apporter quelque chose à ma première consultation ?</span>
+            <i class="bi bi-chevron-down"></i>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-content">
+              <p>Pour votre première consultation, il est recommandé d'apporter :</p>
+              <ul>
+                <li>Votre carte d'identité</li>
+                <li>Vos anciens dossiers médicaux (si vous en avez)</li>
+                <li>La liste des médicaments que vous prenez actuellement</li>
+                <li>Les résultats d'analyses récentes (le cas échéant)</li>
+                <li>Des photos de l'évolution de votre problème (si applicable)</li>
+              </ul>
+              <p class="arabic">
+                لاستشارتك الأولى، يُنصح بإحضار:<br/>
+                • بطاقة الهوية<br/>
+                • ملفاتك الطبية السابقة (إن وجدت)<br/>
+                • قائمة الأدوية التي تتناولها حالياً<br/>
+                • نتائج التحليلات الحديثة (إن وجدت)<br/>
+                • صور لتطور مشكلتك (إن أمكن)
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item" data-category="general">
+          <button class="faq-question">
+            <span>Les consultations sont-elles remboursées par l'assurance ?</span>
+            <i class="bi bi-chevron-down"></i>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-content">
+              <p>Cela dépend de votre assurance maladie. Les consultations de dermatologie médicale sont généralement remboursées, tandis que les traitements esthétiques ne le sont généralement pas. Nous vous recommandons de vérifier avec votre assurance avant la consultation.</p>
+              <p class="arabic">
+                يعتمد ذلك على تأمينك الصحي. عادة ما يتم استرداد استشارات الأمراض الجلدية الطبية، بينما لا يتم استرداد العلاجات التجميلية عادة. ننصحك بالتحقق مع تأمينك قبل الاستشارة.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- No Results Message -->
+    <div id="no-results" class="no-results hidden">
+      <i class="bi bi-search"></i>
+      <h3>Aucun résultat trouvé</h3>
+      <p>Essayez avec d'autres mots-clés</p>
+    </div>
+  </div>
+
+  <footer class="text-center py-4 mt-5 footer-3d">
+    <div class="container footer-inner">
+      <p class="mb-0">&copy; 2025 Cabinet Dermatologique - Tous droits réservés.</p>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  
+  <!-- Chatbot JS -->
+  <script src="chatbot.js"></script>
+  <!-- THREE.js + animations 3D -->
+  <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js" defer></script>
+  <script src="medical-animations.js" defer></script>
+  <script src="interactive-effects.js" defer></script>
+  
+  <!-- FAQ Script -->
+  <script>
+    // Toggle FAQ items
+    document.querySelectorAll('.faq-question').forEach(question => {
+      question.addEventListener('click', function() {
+        const answer = this.nextElementSibling;
+        const isActive = this.classList.contains('active');
+        
+        // Close all other items
+        document.querySelectorAll('.faq-question').forEach(q => {
+          if (q !== this) {
+            q.classList.remove('active');
+            q.nextElementSibling.classList.remove('show');
+          }
+        });
+        
+        // Toggle current item
+        if (isActive) {
+          this.classList.remove('active');
+          answer.classList.remove('show');
+        } else {
+          this.classList.add('active');
+          answer.classList.add('show');
+        }
+      });
+    });
+
+    // Search functionality
+    const searchInput = document.getElementById('faq-search');
+    const faqItems = document.querySelectorAll('.faq-item');
+    const noResults = document.getElementById('no-results');
+    const faqContainer = document.getElementById('faq-container');
+
+    searchInput.addEventListener('input', function() {
+      const searchTerm = this.value.toLowerCase().trim();
+      let visibleCount = 0;
+
+      faqItems.forEach(item => {
+        const question = item.querySelector('.faq-question span').textContent.toLowerCase();
+        const answer = item.querySelector('.faq-answer-content').textContent.toLowerCase();
+        const matches = question.includes(searchTerm) || answer.includes(searchTerm);
+
+        if (searchTerm === '' || matches) {
+          item.classList.remove('hidden');
+          visibleCount++;
+        } else {
+          item.classList.add('hidden');
+        }
+      });
+
+      // Show/hide categories with no visible items
+      document.querySelectorAll('.faq-category').forEach(category => {
+        const visibleItems = category.querySelectorAll('.faq-item:not(.hidden)');
+        if (visibleItems.length === 0 && searchTerm !== '') {
+          category.style.display = 'none';
+        } else {
+          category.style.display = 'block';
+        }
+      });
+
+      // Show/hide no results message
+      if (visibleCount === 0 && searchTerm !== '') {
+        noResults.classList.remove('hidden');
+        faqContainer.style.display = 'none';
+      } else {
+        noResults.classList.add('hidden');
+        faqContainer.style.display = 'block';
+      }
+    });
+
+    // Clear search on Escape key
+    searchInput.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        this.value = '';
+        this.dispatchEvent(new Event('input'));
+        this.blur();
+      }
+    });
+  </script>
+</body>
+</html>
+
+

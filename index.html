@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/jpg" href="images/logo.jpg">
+  <title>Accueil - Cabinet Dermatologique</title>
+  
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+  <!-- Chatbot CSS -->
+  <link rel="stylesheet" href="chatbot.css">
+  <!-- Navbar Fixed CSS - DOIT être chargé APRÈS Bootstrap pour override -->
+  <link rel="stylesheet" href="navbar-fixed.css">
+  <!-- Animations médicales 3D -->
+  <link rel="stylesheet" href="medical-animations.css">
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f8f9fa;
+    }
+    .hero-section {
+      background: linear-gradient(rgba(25, 118, 210, 0.5), rgba(25, 118, 210, 0.5)), url('images/bienvenueDERMA.jpg') center center / cover no-repeat;
+      min-height: 90vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .hero-section h1 {
+      text-shadow: 2px 2px 8px rgba(0,0,0,0.6);
+      font-weight: 700;
+    }
+    .hero-section p {
+      text-shadow: 1px 1px 6px rgba(0,0,0,0.6);
+    }
+    .content-card {
+      margin-top: -150px;
+      position: relative;
+      z-index: 5;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+    .content-card h2 {
+      color: #1976d2;
+      font-weight: 600;
+    }
+    .arabic {
+      direction: rtl;
+      text-align: right;
+    }
+    .list-item {
+      margin-bottom: 10px;
+    }
+    .list-item i {
+      color: #1976d2;
+      margin-right: 10px;
+    }
+    footer {
+      background-color: #f8f9fa;
+    }
+    @media (max-width: 768px) {
+      .hero-section {
+        min-height: 70vh;
+      }
+      .content-card {
+        margin-top: -100px;
+      }
+    }
+  </style>
+</head>
+<body class="has-fixed-navbar">
+  <!-- ======== NAVBAR ======== -->
+  <nav class="navbar professional-navbar navbar-expand-lg navbar-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center" href="index.html">
+        <img src="images/logo.jpg" alt="Logo" class="me-2">
+        <span class="d-none d-md-inline">Dr. Asma Mejouar</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link active" href="index.html">Accueil</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="services.html">Services</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="specialites.html">Spécialités</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="contact.html">Contact</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="faq.html">FAQ</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <div class="medical-3d-side-column left" aria-hidden="true">
+    <video class="medical-3d-video" autoplay muted loop playsinline preload="auto">
+      <source src="https://cdn.coverr.co/videos/coverr-3d-blue-particles-network-5177/1080p.mp4" type="video/mp4">
+    </video>
+    <div class="medical-3d-video-overlay"></div>
+  </div>
+  <div class="medical-3d-side-column right" aria-hidden="true">
+    <video class="medical-3d-video" autoplay muted loop playsinline preload="auto">
+      <source src="https://cdn.coverr.co/videos/coverr-hud-interface-5717/1080p.mp4" type="video/mp4">
+    </video>
+    <div class="medical-3d-video-overlay"></div>
+  </div>
+
+  <!-- ======== 3D MEDICAL HERO ======== -->
+  <section class="medical-3d-banner" data-animation="diagnostic">
+    <div class="container medical-3d-layout">
+      <div class="medical-3d-content">
+        <span class="badge">Imagerie 3D</span>
+        <h2>Visualisation dermatologique haute fidélité</h2>
+        <p>Nos protocoles s’appuient sur des simulations 3D pour analyser la peau, anticiper la cicatrisation et guider les actes esthétiques.</p>
+        <p>Chaque diagnostic bénéficie d’un jumeau numérique pour suivre l’évolution des tissus et personnaliser les traitements.</p>
+        <div class="highlights">
+          <span><i class="bi bi-bounding-box-circles"></i> Cartographie cutanée</span>
+          <span><i class="bi bi-cpu"></i> IA médicale</span>
+          <span><i class="bi bi-stars"></i> Rendu photoréaliste</span>
+        </div>
+      </div>
+      <div class="medical-3d-canvas" aria-hidden="true"></div>
+    </div>
+  </section>
+
+  <!-- ======== HERO SECTION ======== -->
+  <section class="hero-section text-white text-center">
+    <div class="container">
+      <h1 class="display-3 fw-bold mb-4">Bienvenue au Cabinet Dermatologique, Vénéréologie et Médecine Esthétique</h1>
+      <p class="lead mb-4" style="max-width: 700px; margin: 0 auto;">
+        Un espace de soins spécialisés pour votre peau, vos cheveux et vos ongles,
+        dirigé par la Dr. Asma Mejouar, dermatologue expérimentée.
+      </p>
+      <a href="contact.html" class="btn btn-light btn-lg px-5 py-3 mt-3 shadow-lg">
+        Prendre Rendez-vous
+      </a>
+    </div>
+  </section>
+
+  <!-- ======== CONTENT SECTION ======== -->
+  <div class="container my-5">
+    <div class="row justify-content-center">
+      <div class="col-lg-10">
+        <div class="card content-card border-0 p-4 p-md-5">
+          <div class="card-body">
+            <h2 class="mb-4">Qu'est-ce que la dermatologie ?</h2>
+            <p class="mb-4">
+              La dermatologie est une spécialité médicale dédiée au diagnostic et au traitement des maladies de la peau,
+              des cheveux, des ongles et des muqueuses. Elle comprend également des soins esthétiques comme le traitement
+              des rides, des cicatrices ou des taches pigmentaires. Le dermatologue est également formé pour effectuer
+              des interventions chirurgicales mineures et des traitements au laser.
+            </p>
+            <p class="arabic mb-5">
+              الأمراض الجلدية هي تخصص طبي يهتم بتشخيص وعلاج أمراض الجلد والشعر والأظافر والأغشية المخاطية.
+              كما تشمل العلاجات التجميلية مثل معالجة التجاعيد والندوب والبقع الصبغية.
+              كما يتم تدريب طبيب الأمراض الجلدية على القيام بعمليات جراحية طفيفة وعلاجات بالليزر.
+            </p>
+
+            <h2 class="mb-4">À propos du Dr. Asma Mejouar</h2>
+            <p class="mb-4">
+              Le Dr. Asma Mejouar est un médecin spécialiste en dermatologie, vénéréologie et médecine esthétique. Elle est diplômée de la faculté de médecine de Casablanca, ancienne interne du CHU Ibn Rochd (Casablanca), et lauréate de la faculté de médecine de Marrakech. Dr. ASMA MEJOUAR est une dermatologue diplômée avec plusieurs années d'expérience dans le domaine médical.
+              Elle allie professionnalisme, écoute et expertise pour offrir à ses patients un suivi personnalisé,
+              que ce soit en dermatologie médicale, chirurgicale ou esthétique.
+            </p>
+            <p class="arabic mb-5">
+              الدكتورة أسماء مجوار هي طبيبة متخصصة في الأمراض الجلدية، والأمراض التناسلية، وطب التجميل.
+              حاصلة على دبلوم من كلية الطب بالدار البيضاء، وكانت طبيبة داخلية سابقة بالمستشفى الجامعي ابن رشد (الدار البيضاء)، وخريجة كلية الطب بمراكش.
+              الدكتورة أسماء مجوار هي طبيبة جلدية حاصلة على شهادة تخصص ولديها سنوات عديدة من الخبرة في المجال الطبي.
+              تجمع بين الاحترافية، وحسن الإصغاء، والخبرة لتقديم متابعة شخصية لمرضاها، سواء في الأمراض الجلدية الطبية أو الجراحية أو التجميلية
+            </p>
+
+            <h2 class="mb-4">Son champ de spécialisation couvre :</h2>
+          <div class="row mb-4">
+            <div class="col-md-6">
+              <ul class="list-unstyled">
+                <li class="list-item"><i class="bi bi-check-circle-fill"></i>Les maladies de la peau, des ongles et des cheveux</li>
+                <li class="list-item"><i class="bi bi-check-circle-fill"></i>Les allergies cutanées</li>
+                <li class="list-item"><i class="bi bi-check-circle-fill"></i>La chirurgie dermatologique</li>
+              </ul>
+            </div>
+            <div class="col-md-6">
+              <ul class="list-unstyled">
+                <li class="list-item"><i class="bi bi-check-circle-fill"></i>Les maladies sexuellement transmissibles</li>
+                <li class="list-item"><i class="bi bi-check-circle-fill"></i>La dermatologie pédiatrique</li>
+                <li class="list-item"><i class="bi bi-check-circle-fill"></i>La dermatologie esthétique</li>
+              </ul>
+            </div>
+          </div>
+            <p class="arabic">أمراض الجلد والأظافر والشعر<br/>
+              الحساسية الجلدية<br/>
+              الجراحة الجلدية<br/>
+              الأمراض المنقولة جنسياً<br/>
+              الأمراض الجلدية عند الأطفال (الأمراض الجلدية للأطفال)<br/>
+              الأمراض الجلدية التجميلية (الأمراض الجلدية الجمالية)
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======== FOOTER ======== -->
+  <footer class="text-center py-4 mt-5 footer-3d">
+    <div class="container footer-inner">
+      <p class="mb-0">&copy; 2025 Cabinet Dermatologique - Tous droits réservés.</p>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  
+  <!-- Chatbot JS -->
+  <script src="chatbot.js"></script>
+  <!-- THREE.js + animations 3D -->
+  <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js" defer></script>
+  <script src="medical-animations.js" defer></script>
+  <script src="interactive-effects.js" defer></script>
+  
+  <!-- Smooth Scroll Animation -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+          }
+        });
+      }, { threshold: 0.1 });
+
+      document.querySelectorAll('.content-card h2, .content-card p').forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(20px)';
+        el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        observer.observe(el);
+      });
+    });
+  </script>
+</body>
+</html>

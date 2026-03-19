@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/jpg" href="images/logo.jpg">
+  <title>Contact - Cabinet Dermatologique</title>
+  
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+  <!-- Chatbot CSS -->
+  <link rel="stylesheet" href="chatbot.css">
+  <!-- Navbar Fixed CSS - DOIT être chargé APRÈS Bootstrap pour override -->
+  <link rel="stylesheet" href="navbar-fixed.css">
+  <!-- Animations médicales 3D -->
+  <link rel="stylesheet" href="medical-animations.css">
+  
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f8f9fa;
+    }
+    .contact-card {
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+    .contact-card h2 {
+      color: #1976d2;
+      font-weight: 600;
+    }
+    .contact-btn {
+      transition: transform 0.3s ease;
+    }
+    .contact-btn:hover {
+      transform: translateY(-3px);
+    }
+    .map-container {
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+    .contact-form-card {
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      border: none;
+    }
+    .contact-form-card h2 {
+      color: #1976d2;
+      font-weight: 600;
+      margin-bottom: 30px;
+    }
+    .form-label {
+      font-weight: 600;
+      color: #333;
+      margin-bottom: 8px;
+    }
+    .form-control, .form-select {
+      border: 2px solid #e0e0e0;
+      border-radius: 10px;
+      padding: 12px 16px;
+      font-size: 15px;
+      transition: all 0.3s ease;
+    }
+    .form-control:focus, .form-select:focus {
+      border-color: #1976d2;
+      box-shadow: 0 0 0 0.2rem rgba(25, 118, 210, 0.15);
+      outline: none;
+    }
+    .form-control::placeholder {
+      color: #999;
+    }
+    .btn-submit {
+      background: linear-gradient(135deg, #1976d2 0%, #125ea5 100%);
+      border: none;
+      border-radius: 10px;
+      padding: 14px 30px;
+      font-size: 16px;
+      font-weight: 600;
+      color: white;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(25, 118, 210, 0.3);
+    }
+    .btn-submit:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(25, 118, 210, 0.4);
+      background: linear-gradient(135deg, #125ea5 0%, #1976d2 100%);
+    }
+    .btn-submit:active {
+      transform: translateY(0);
+    }
+    .form-icon {
+      color: #1976d2;
+      margin-right: 8px;
+    }
+    .alert-success {
+      border-radius: 10px;
+      border: none;
+      background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+      color: white;
+    }
+    .alert-danger {
+      border-radius: 10px;
+      border: none;
+      background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+      color: white;
+    }
+  </style>
+</head>
+<body class="has-fixed-navbar">
+  <!-- Navbar -->
+  <nav class="navbar professional-navbar navbar-expand-lg navbar-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center" href="index.html">
+        <img src="images/logo.jpg" alt="Logo" class="me-2">
+        <span class="d-none d-md-inline">Dr. Asma Mejouar</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">Accueil</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="services.html">Services</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="specialites.html">Spécialités</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="contact.html">Contact</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="faq.html">FAQ</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <div class="medical-3d-side-column left" aria-hidden="true">
+    <video class="medical-3d-video" autoplay muted loop playsinline preload="auto">
+      <source src="https://cdn.coverr.co/videos/coverr-3d-blue-particles-network-5177/1080p.mp4" type="video/mp4">
+    </video>
+    <div class="medical-3d-video-overlay"></div>
+  </div>
+  <div class="medical-3d-side-column right" aria-hidden="true">
+    <video class="medical-3d-video" autoplay muted loop playsinline preload="auto">
+      <source src="https://cdn.coverr.co/videos/coverr-hud-interface-5717/1080p.mp4" type="video/mp4">
+    </video>
+    <div class="medical-3d-video-overlay"></div>
+  </div>
+
+  <section class="medical-3d-banner" data-animation="contact">
+    <div class="container medical-3d-layout">
+      <div class="medical-3d-content">
+        <span class="badge">Suivi interactif</span>
+        <h2>Connexion 3D sécurisée avec le cabinet</h2>
+        <p>Partagez vos clichés dermoscopiques et recevez un retour visuel animé sur les zones à surveiller.</p>
+        <p>Nos animations aident à comprendre les plans de traitement et à préparer vos rendez-vous.</p>
+        <div class="highlights">
+          <span><i class="bi bi-shield-lock"></i> Données protégées</span>
+          <span><i class="bi bi-chat-dots"></i> Briefing visuel</span>
+          <span><i class="bi bi-phone"></i> Suivi mobile</span>
+        </div>
+      </div>
+      <div class="medical-3d-canvas" aria-hidden="true"></div>
+    </div>
+  </section>
+
+  <div class="container py-5">
+    <div class="row justify-content-center">
+      <div class="col-lg-10">
+        <h1 class="text-center text-primary mb-5">Contactez-nous</h1>
+        
+        <!-- Formulaire de Contact -->
+        <div class="card contact-form-card border-0 mb-5">
+          <div class="card-body p-4 p-md-5">
+            <h2 class="text-center mb-4">
+              <i class="bi bi-envelope-paper form-icon"></i>
+              Envoyez-nous un message
+            </h2>
+            
+            <div id="form-alert" class="alert d-none" role="alert"></div>
+            
+            <form id="contact-form" method="post" action="mailto:rayan2003.de@gmail.com" enctype="text/plain">
+              <div class="row">
+                <div class="col-md-6 mb-3">
+                  <label for="nom" class="form-label">
+                    <i class="bi bi-person form-icon"></i>Nom *
+                  </label>
+                  <input 
+                    type="text" 
+                    class="form-control" 
+                    id="nom" 
+                    name="nom" 
+                    placeholder="Votre nom"
+                    required
+                  >
+                </div>
+                <div class="col-md-6 mb-3">
+                  <label for="prenom" class="form-label">
+                    <i class="bi bi-person form-icon"></i>Prénom *
+                  </label>
+                  <input 
+                    type="text" 
+                    class="form-control" 
+                    id="prenom" 
+                    name="prenom" 
+                    placeholder="Votre prénom"
+                    required
+                  >
+                </div>
+              </div>
+              
+              <div class="mb-3">
+                <label for="email" class="form-label">
+                  <i class="bi bi-envelope form-icon"></i>Email *
+                </label>
+                <input 
+                  type="email" 
+                  class="form-control" 
+                  id="email" 
+                  name="email" 
+                  placeholder="votre.email@exemple.com"
+                  required
+                >
+              </div>
+              
+              <div class="mb-3">
+                <label for="sujet" class="form-label">
+                  <i class="bi bi-tag form-icon"></i>Sujet *
+                </label>
+                <select class="form-select" id="sujet" name="sujet" required>
+                  <option value="">Sélectionnez un sujet</option>
+                  <option value="Prise de rendez-vous">Prise de rendez-vous</option>
+                  <option value="Question sur les services">Question sur les services</option>
+                  <option value="Question médicale">Question médicale</option>
+                  <option value="Information générale">Information générale</option>
+                  <option value="Autre">Autre</option>
+                </select>
+              </div>
+              
+              <div class="mb-4">
+                <label for="message" class="form-label">
+                  <i class="bi bi-chat-left-text form-icon"></i>Message *
+                </label>
+                <textarea 
+                  class="form-control" 
+                  id="message" 
+                  name="message" 
+                  rows="6" 
+                  placeholder="Décrivez votre demande ou votre question..."
+                  required
+                ></textarea>
+              </div>
+              
+              <div class="text-center">
+                <button type="submit" class="btn btn-submit btn-lg px-5">
+                  <i class="bi bi-send-fill me-2"></i>
+                  Envoyer le message
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+        
+        <div class="card contact-card border-0 mb-5">
+          <div class="card-body p-5 text-center">
+            <h2 class="mb-4">Contactez-nous</h2>
+            
+            <div class="mb-4">
+              <a 
+                href="https://wa.me/2120661063999" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                class="btn btn-success btn-lg w-100 mb-3 contact-btn d-flex align-items-center justify-content-center"
+                style="font-size: 1.1rem;"
+              >
+                <i class="bi bi-whatsapp me-2"></i>
+                WhatsApp : 0524408296 / 0661063999
+              </a>
+            </div>
+            
+            <div class="mb-4">
+              <a 
+                href="mailto:asmamejouar@gmail.com?subject=Prise%20de%20rendez-vous&body=Bonjour%20Docteur,%0D%0AJe%20souhaite%20prendre%20un%20rendez-vous."
+                class="btn btn-primary btn-lg w-100 mb-3 contact-btn d-flex align-items-center justify-content-center"
+                style="font-size: 1.1rem;"
+              >
+                <i class="bi bi-envelope me-2"></i>
+                Email : asmamejouar@gmail.com
+              </a>
+            </div>
+            
+            <div class="mb-4">
+              <p class="mb-0 fs-5">
+                <i class="bi bi-geo-alt-fill text-primary me-2"></i>
+                Adresse : J24J+X68, Marrakech, Maroc
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="map-container">
+          <iframe 
+            src="https://www.google.com/maps?q=J24J%2BX68%2C%20Marrakech%2C%20Maroc&output=embed"
+            width="100%" 
+            height="400" 
+            style="border:0;" 
+            allowfullscreen="" 
+            loading="lazy"
+            title="Location Map"
+          ></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Script pour le formulaire de contact -->
+  <script>
+    document.getElementById('contact-form').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      
+      const nom = document.getElementById('nom').value.trim();
+      const prenom = document.getElementById('prenom').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const sujet = document.getElementById('sujet').value;
+      const message = document.getElementById('message').value.trim();
+      
+      // Validation
+      if (!nom || !prenom || !email || !sujet || !message) {
+        showAlert('Veuillez remplir tous les champs obligatoires.', 'danger');
+        return;
+      }
+      
+      // Validation email
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email)) {
+        showAlert('Veuillez entrer une adresse email valide.', 'danger');
+        return;
+      }
+      
+      // Désactiver le bouton pendant l'envoi
+      const submitBtn = document.querySelector('.btn-submit');
+      const originalText = submitBtn.innerHTML;
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = '<i class="bi bi-hourglass-split me-2"></i>Envoi en cours...';
+      
+      try {
+        // Envoyer les données au backend Flask
+        const response = await fetch('http://127.0.0.1:5000/api/contact', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            nom: nom,
+            prenom: prenom,
+            email: email,
+            sujet: sujet,
+            message: message
+          })
+        });
+        
+        const data = await response.json();
+        
+        if (data.success) {
+          showAlert(data.message, 'success');
+          // Réinitialiser le formulaire
+          document.getElementById('contact-form').reset();
+        } else {
+          showAlert(data.message || 'Une erreur est survenue. Veuillez réessayer.', 'danger');
+        }
+      } catch (error) {
+        console.error('Erreur:', error);
+        showAlert('Erreur de connexion au serveur. Assurez-vous que le serveur Flask est démarré. Double-cliquez sur "start_flask.bat" ou tapez "python app.py" dans un terminal, puis rechargez cette page.', 'danger');
+      } finally {
+        // Réactiver le bouton
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalText;
+      }
+    });
+    
+    function showAlert(message, type) {
+      const alertDiv = document.getElementById('form-alert');
+      alertDiv.className = `alert alert-${type}`;
+      alertDiv.textContent = message;
+      alertDiv.classList.remove('d-none');
+      
+      // Faire défiler vers l'alerte
+      alertDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      
+      // Masquer l'alerte après 5 secondes
+      setTimeout(() => {
+        alertDiv.classList.add('d-none');
+      }, 5000);
+    }
+  </script>
+
+  <footer class="text-center py-4 mt-5 footer-3d">
+    <div class="container footer-inner">
+      <p class="mb-0">&copy; 2025 Cabinet Dermatologique - Tous droits réservés.</p>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  
+  <!-- Chatbot JS -->
+  <script src="chatbot.js"></script>
+  <!-- THREE.js + animations 3D -->
+  <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js" defer></script>
+  <script src="medical-animations.js" defer></script>
+  <script src="interactive-effects.js" defer></script>
+</body>
+</html>

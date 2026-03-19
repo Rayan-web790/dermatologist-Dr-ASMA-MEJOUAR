@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/jpg" href="images/logo.jpg">
+  <title>Nos Services - Cabinet Dermatologique</title>
+  
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+  <!-- Chatbot CSS -->
+  <link rel="stylesheet" href="chatbot.css">
+  <!-- Navbar Fixed CSS - DOIT être chargé APRÈS Bootstrap pour override -->
+  <link rel="stylesheet" href="navbar-fixed.css">
+  <!-- Animations médicales 3D -->
+  <link rel="stylesheet" href="medical-animations.css">
+  
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f8f9fa;
+    }
+    .service-card {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border: none;
+      border-radius: 15px;
+    }
+    .service-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15) !important;
+    }
+    .service-card h2 {
+      color: #1976d2;
+      font-weight: 600;
+    }
+    .service-images img {
+      transition: transform 0.3s ease;
+      border-radius: 10px;
+    }
+    .service-images img:hover {
+      transform: scale(1.05);
+    }
+    .arabic {
+      direction: rtl;
+      text-align: right;
+    }
+    .back-to-top {
+      position: fixed;
+      bottom: 100px;
+      right: 30px;
+      width: 50px;
+      height: 50px;
+      background-color: #1976d2;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      font-size: 24px;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      transition: all 0.3s ease;
+      z-index: 999;
+      display: none;
+    }
+    .back-to-top:hover {
+      background-color: #125ea5;
+      transform: translateY(-3px) scale(1.1);
+    }
+    .back-to-top.show {
+      display: block;
+    }
+  </style>
+</head>
+<body class="has-fixed-navbar">
+  <!-- Navbar -->
+  <nav class="navbar professional-navbar navbar-expand-lg navbar-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center" href="index.html">
+        <img src="images/logo.jpg" alt="Logo" class="me-2">
+        <span class="d-none d-md-inline">Dr. Asma Mejouar</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">Accueil</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="services.html">Services</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="specialites.html">Spécialités</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="contact.html">Contact</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="faq.html">FAQ</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <div class="medical-3d-side-column left" aria-hidden="true">
+    <video class="medical-3d-video" autoplay muted loop playsinline preload="auto">
+      <source src="https://cdn.coverr.co/videos/coverr-3d-blue-particles-network-5177/1080p.mp4" type="video/mp4">
+    </video>
+    <div class="medical-3d-video-overlay"></div>
+  </div>
+  <div class="medical-3d-side-column right" aria-hidden="true">
+    <video class="medical-3d-video" autoplay muted loop playsinline preload="auto">
+      <source src="https://cdn.coverr.co/videos/coverr-hud-interface-5717/1080p.mp4" type="video/mp4">
+    </video>
+    <div class="medical-3d-video-overlay"></div>
+  </div>
+
+  <section class="medical-3d-banner" data-animation="lasers">
+    <div class="container medical-3d-layout">
+      <div class="medical-3d-content">
+        <span class="badge">Plans de traitement</span>
+        <h2>Animations 3D dédiées à chaque service</h2>
+        <p>Laser, peeling, injections ou chirurgie légère&nbsp;: visualisez la profondeur d’action de chaque soin.</p>
+        <p>Les animations pédagogiques expliquent la régénération cellulaire et les temps de récupération.</p>
+        <div class="highlights">
+          <span><i class="bi bi-layers"></i> Coupe de la peau</span>
+          <span><i class="bi bi-bezier"></i> Trajectoires laser</span>
+          <span><i class="bi bi-activity"></i> Biostimulation</span>
+        </div>
+      </div>
+      <div class="medical-3d-canvas" aria-hidden="true"></div>
+    </div>
+  </section>
+
+  <div class="container py-5">
+    <h1 class="text-center text-primary mb-5">Nos Services</h1>
+    
+    <div class="card service-card shadow-lg mb-5">
+      <div class="card-body p-4">
+        <h2 class="mb-4">Diagnostic de la peau</h2>
+        <div class="row g-3 mb-4">
+          <div class="col-md-4">
+            <img src="images/DIagnostic de la peau.jpg" alt="Diagnostic de la peau" class="img-fluid rounded shadow-sm" style="width: 100%; height: 250px; object-fit: cover;">
+          </div>
+          <div class="col-md-4">
+            <img src="images/DP.jpg" alt="Diagnostic de la peau" class="img-fluid rounded shadow-sm" style="width: 100%; height: 250px; object-fit: cover;">
+          </div>
+          <div class="col-md-4">
+            <img src="images/Diagnostic de la peau3.jpg" alt="Diagnostic de la peau" class="img-fluid rounded shadow-sm" style="width: 100%; height: 250px; object-fit: cover;">
+          </div>
+        </div>
+        <p class="mb-3">Le diagnostic de la peau est une étape fondamentale en dermatologie. Il consiste à analyser en profondeur l'état de la peau grâce à des outils spécialisés et à l'expertise du dermatologue. Cette évaluation permet d'identifier les affections cutanées (acné, eczéma, psoriasis, infections, allergies, taches, vieillissement prématuré…) et de déterminer le traitement le plus adapté. Un bon diagnostic prend en compte l'historique médical, les habitudes de vie, ainsi que les caractéristiques propres à chaque patient (type de peau, sensibilité, exposition au soleil). C'est une étape essentielle pour prévenir, traiter efficacement et assurer une peau saine et équilibrée.</p>
+        <p class="arabic">تشخيص الجلد هو خطوة أساسية في طب الأمراض الجلدية. يهدف إلى تحليل حالة الجلد بشكل معمّق باستعمال أدوات متخصّصة وخبرة طبيب الجلد. يساعد هذا التقييم على تحديد الأمراض الجلدية مثل حبّ الشباب، الإكزيما، الصدفية، الالتهابات، الحساسية، البقع والتقدّم المبكر في العمر، ثم اختيار العلاج الأنسب. يأخذ التشخيص بعين الاعتبار التاريخ الطبي للمريض، ونمط حياته، وخصائص بشرته (نوع البشرة، حساسيتها، ومدى تعرضها للشمس). يُعد التشخيص الدقيق أساسياً للوقاية والعلاج وضمان بشرة صحية ومتوازنة.</p>
+      </div>
+    </div>
+
+    <div class="card service-card shadow-lg mb-5">
+      <div class="card-body p-4">
+        <h2 class="mb-4">Traitement de l'acné</h2>
+        <div class="row g-3 mb-4">
+          <div class="col-md-4">
+            <img src="images/acne.jpg" alt="Traitement de l'acné" class="img-fluid rounded shadow-sm" style="width: 100%; height: 250px; object-fit: cover;">
+          </div>
+          <div class="col-md-4">
+            <img src="images/acné2.jpg" alt="Traitement de l'acné" class="img-fluid rounded shadow-sm" style="width: 100%; height: 250px; object-fit: cover;">
+          </div>
+          <div class="col-md-4">
+            <img src="images/acné3.jpg" alt="Traitement de l'acné" class="img-fluid rounded shadow-sm" style="width: 100%; height: 250px; object-fit: cover;">
+          </div>
+        </div>
+        <p class="mb-3">Le traitement de l'acné vise à réduire les boutons, points noirs, inflammations et cicatrices laissées par cette affection fréquente. Selon la gravité, il peut inclure des crèmes ou gels topiques, des médicaments oraux (antibiotiques, rétinoïdes), des soins dermatologiques tels que le peeling ou la lumière LED, et des conseils d'hygiène de vie adaptés. L'objectif est non seulement d'améliorer l'apparence de la peau, mais aussi de prévenir les cicatrices permanentes et de renforcer la confiance en soi du patient.</p>
+        <p class="arabic">علاج حبّ الشباب يهدف إلى التخفيف من البثور، الرؤوس السوداء، الالتهابات والندوب التي يخلّفها هذا المرض الشائع. يعتمد العلاج على شدّة الحالة، وقد يشمل كريمات أو جلّات موضعية، أدوية عبر الفم (مثل المضادات الحيوية أو الريتينويدات)، أو جلسات علاجية عند طبيب الجلد كالتقشير أو العلاج بالضوء. الهدف من العلاج هو تحسين مظهر البشرة، منع تكوّن ندوب دائمة، وتعزيز ثقة المريض بنفسه.</p>
+      </div>
+    </div>
+
+    <div class="card service-card shadow-lg mb-5">
+      <div class="card-body p-4">
+        <h2 class="mb-4">Peeling chimique</h2>
+        <div class="row g-3 mb-4">
+          <div class="col-md-4">
+            <img src="images/Peeling1.jpg" alt="Peeling chimique" class="img-fluid rounded shadow-sm" style="width: 100%; height: 250px; object-fit: cover;">
+          </div>
+          <div class="col-md-4">
+            <img src="images/Peeling2.jpg" alt="Peeling chimique" class="img-fluid rounded shadow-sm" style="width: 100%; height: 250px; object-fit: cover;">
+          </div>
+          <div class="col-md-4">
+            <img src="images/Peeling3.jpg" alt="Peeling chimique" class="img-fluid rounded shadow-sm" style="width: 100%; height: 250px; object-fit: cover;">
+          </div>
+        </div>
+        <p class="mb-3">Le peeling chimique est une technique dermatologique esthétique qui consiste à appliquer une solution chimique contrôlée sur la peau afin de provoquer une exfoliation et stimuler le renouvellement cellulaire. Il permet de corriger diverses imperfections : taches pigmentaires, cicatrices d'acné, rides fines, pores dilatés et teint terne. Adapté à chaque type de peau et réalisé sous supervision médicale, le peeling redonne éclat, douceur et uniformité au visage, avec une peau visiblement plus jeune et revitalisée.</p>
+        <p class="arabic">التقشير الكيميائي هو إجراء تجميلي جلدي يقوم على وضع محلول كيميائي مدروس على البشرة لإحداث تقشير وتحفيز تجديد الخلايا. يساعد هذا العلاج على تصحيح عيوب متعددة مثل التصبغات، ندوب حبّ الشباب، التجاعيد الدقيقة، المسام الواسعة وشحوب الوجه. يتم اختيار نوع التقشير حسب طبيعة البشرة وتحت إشراف الطبيب المختص. يمنح هذا العلاج إشراقة وحيوية للبشرة، ويجعلها أكثر نعومة وتجانساً وشباباً.</p>
+      </div>
+    </div>
+
+    <div class="card service-card shadow-lg mb-5">
+      <div class="card-body p-4">
+        <h2 class="mb-4">Laser dermatologique</h2>
+        <div class="row g-3 mb-4">
+          <div class="col-md-4">
+            <img src="images/Laser dermatologique1.jpg" alt="Laser dermatologique" class="img-fluid rounded shadow-sm" style="width: 100%; height: 250px; object-fit: cover;">
+          </div>
+          <div class="col-md-4">
+            <img src="images/Laser dermatologique2.jpg" alt="Laser dermatologique" class="img-fluid rounded shadow-sm" style="width: 100%; height: 250px; object-fit: cover;">
+          </div>
+          <div class="col-md-4">
+            <img src="images/Laser dermatologique3.jpg" alt="Laser dermatologique" class="img-fluid rounded shadow-sm" style="width: 100%; height: 250px; object-fit: cover;">
+          </div>
+        </div>
+        <p class="mb-3">Le laser dermatologique est une technologie médicale avancée utilisée pour traiter un large éventail de problèmes cutanés. Grâce à la précision du faisceau lumineux, il agit de manière ciblée sur les taches brunes, cicatrices, rides, varicosités, angiomes ou poils indésirables. Chaque type de laser est adapté à une indication spécifique, ce qui permet d'obtenir des résultats efficaces et sécurisés. Ce traitement offre un rajeunissement cutané non invasif, améliore la texture de la peau et redonne confiance aux patients.</p>
+        <p class="arabic">الليزر الجلدي هو تقنية طبية متطوّرة تُستعمل لعلاج مجموعة واسعة من مشاكل البشرة. بفضل دقة شعاع الضوء، يعمل بشكل موجّه على البقع الداكنة، الندوب، التجاعيد، الشعيرات الدموية الظاهرة، الأورام الوعائية أو الشعر غير المرغوب فيه. يتم اختيار نوع الليزر حسب الحالة للحصول على نتائج فعّالة وآمنة. هذا العلاج يوفّر تجديداً للبشرة دون جراحة، يحسّن ملمس الجلد ويعيد الثقة للمريض.</p>
+      </div>
+    </div>
+
+    <div class="card service-card shadow-lg mb-5">
+      <div class="card-body p-4">
+        <h2 class="mb-4">Chirurgie des grains de beauté</h2>
+        <div class="row g-3 mb-4">
+          <div class="col-md-4">
+            <img src="images/Chirurgie des grains de beauté1.jpg" alt="Chirurgie des grains de beauté" class="img-fluid rounded shadow-sm" style="width: 100%; height: 250px; object-fit: cover;">
+          </div>
+          <div class="col-md-4">
+            <img src="images/Chirurgie des grains de beauté2.jpg" alt="Chirurgie des grains de beauté" class="img-fluid rounded shadow-sm" style="width: 100%; height: 250px; object-fit: cover;">
+          </div>
+          <div class="col-md-4">
+            <img src="images/Chirurgie des grains de beauté3.jpg" alt="Chirurgie des grains de beauté" class="img-fluid rounded shadow-sm" style="width: 100%; height: 250px; object-fit: cover;">
+          </div>
+        </div>
+        <p class="mb-3">La chirurgie des grains de beauté consiste à retirer un nævus (grain de beauté) jugé inesthétique ou suspect d'un point de vue médical. L'intervention est réalisée sous anesthésie locale, de manière rapide et indolore. Après l'excision, le grain de beauté peut être analysé en laboratoire pour détecter toute anomalie éventuelle (prévention du mélanome). Ce geste simple allie sécurité médicale et souci esthétique, offrant au patient tranquillité et confort.</p>
+        <p class="arabic">جراحة إزالة الشامات (الوحَمات) تهدف إلى استئصال الشامة التي قد تكون غير مرغوبة جمالياً أو يُشكّ في طبيعتها من الناحية الطبية. تُجرى العملية تحت تخدير موضعي بطريقة سريعة وغير مؤلمة. بعد الإزالة، يمكن تحليل الشامة في المختبر للكشف عن أي تغيّرات غير طبيعية (للوقاية من سرطان الجلد). هذا الإجراء يجمع بين الأمان الطبي والجانب الجمالي، مما يمنح المريض راحة واطمئناناً.</p>
+      </div>
+    </div>
+
+    <div class="card service-card shadow-lg mb-5">
+      <div class="card-body p-4">
+        <h2 class="mb-4">Traitement des verrues</h2>
+        <div class="row g-3 mb-4">
+          <div class="col-md-4">
+            <img src="images/Traitement des verrues1.jpg" alt="Traitement des verrues" class="img-fluid rounded shadow-sm" style="width: 100%; height: 250px; object-fit: cover;">
+          </div>
+          <div class="col-md-4">
+            <img src="images/Traitement des verrues2.jpg" alt="Traitement des verrues" class="img-fluid rounded shadow-sm" style="width: 100%; height: 250px; object-fit: cover;">
+          </div>
+          <div class="col-md-4">
+            <img src="images/Traitement des verrues3.jpg" alt="Traitement des verrues" class="img-fluid rounded shadow-sm" style="width: 100%; height: 250px; object-fit: cover;">
+          </div>
+        </div>
+        <p class="mb-3">Le traitement des verrues repose sur différentes techniques médicales, selon leur localisation, leur nombre et leur résistance. Les méthodes les plus courantes incluent la cryothérapie (azote liquide), l'électrocoagulation, le laser ou l'application de produits kératolytiques. Ces interventions visent à détruire la verrue, limiter la récidive et améliorer le confort du patient. Un suivi dermatologique est important pour éviter la propagation et choisir le traitement le plus adapté.</p>
+        <p class="arabic">علاج الثآليل يعتمد على عدّة تقنيات طبية وفقاً لمكانها، عددها ومقاومتها. من أكثر الطرق استعمالاً: التجميد بالنيتروجين السائل (الكرايوثيرابي)، الكيّ الكهربائي، الليزر أو وضع مواد مذيبة للجلد المتصلب. الهدف من العلاج هو إزالة الثآليل، منع عودتها وتحسين راحة المريض. يُعتبر المتابعة مع طبيب الجلدية مهمة لتفادي انتشارها واختيار أنسب وسيلة علاجية.</p>
+      </div>
+    </div>
+
+    <div class="card service-card shadow-lg mb-5">
+      <div class="card-body p-4">
+        <h2 class="mb-4">Consultation des enfants</h2>
+        <div class="row g-3 mb-4">
+          <div class="col-md-4">
+            <img src="images/enfants1.jpg" alt="Consultation des enfants" class="img-fluid rounded shadow-sm" style="width: 100%; height: 250px; object-fit: cover;">
+          </div>
+          <div class="col-md-4">
+            <img src="images/enfants2.jpg" alt="Consultation des enfants" class="img-fluid rounded shadow-sm" style="width: 100%; height: 250px; object-fit: cover;">
+          </div>
+          <div class="col-md-4">
+            <img src="images/enfants3.jpg" alt="Consultation des enfants" class="img-fluid rounded shadow-sm" style="width: 100%; height: 250px; object-fit: cover;">
+          </div>
+        </div>
+        <p class="mb-3">La consultation dermatologique pédiatrique concerne les affections cutanées propres aux nourrissons, enfants et adolescents. Elle prend en charge des pathologies fréquentes comme l'eczéma, les allergies, les infections cutanées, les taches de naissance, l'acné juvénile ou les maladies génétiques de la peau. Le dermatologue adapte ses explications et ses traitements à l'âge de l'enfant et rassure les parents, offrant ainsi un accompagnement spécialisé et bienveillant.</p>
+        <p class="arabic">الاستشارة الجلدية للأطفال تهتم بالأمراض الجلدية الخاصة بالرضّع، الأطفال والمراهقين. وتشمل متابعة حالات شائعة مثل الإكزيما، الحساسية، الالتهابات الجلدية، الوحمات، حبّ الشباب عند المراهقين أو الأمراض الوراثية الجلدية. يقوم طبيب الجلدية بتكييف العلاج وشرحه بما يتناسب مع عمر الطفل ويطمئن الأهل، مما يوفّر رعاية متخصّصة ولطيفة.</p>
+      </div>
+    </div>
+
+    <div class="card service-card shadow-lg mb-5">
+      <div class="card-body p-4">
+        <h2 class="mb-4">Injections esthétiques</h2>
+        <div class="row g-3 mb-4">
+          <div class="col-md-4">
+            <img src="images/injection1.jpg" alt="Injections esthétiques" class="img-fluid rounded shadow-sm" style="width: 100%; height: 250px; object-fit: cover;">
+          </div>
+          <div class="col-md-4">
+            <img src="images/injection2.jpg" alt="Injections esthétiques" class="img-fluid rounded shadow-sm" style="width: 100%; height: 250px; object-fit: cover;">
+          </div>
+          <div class="col-md-4">
+            <img src="images/injection3.jpg" alt="Injections esthétiques" class="img-fluid rounded shadow-sm" style="width: 100%; height: 250px; object-fit: cover;">
+          </div>
+        </div>
+        <p class="mb-3">Les injections esthétiques (toxine botulique et acide hyaluronique) sont des techniques non chirurgicales visant à rajeunir et embellir le visage. Le Botox agit sur les muscles responsables des rides d'expression, tandis que l'acide hyaluronique redonne du volume et hydrate la peau en profondeur. Ces traitements offrent un résultat naturel, rapide et réversible, permettant de lisser les rides, harmoniser les traits et restaurer l'éclat du visage sans intervention lourde.</p>
+        <p class="arabic">الحقن التجميلية (البوتوكس وحمض الهيالورونيك) هي تقنيات غير جراحية تهدف إلى تجديد شباب الوجه وتحسين مظهره. يعمل البوتوكس على إرخاء العضلات المسؤولة عن التجاعيد التعبيرية، بينما يعيد حمض الهيالورونيك امتلاء البشرة ويرطّبها بعمق. تمنح هذه العلاجات نتيجة طبيعية وسريعة ويمكن تعديلها، حيث تساعد على تنعيم التجاعيد، تحسين تناسق الملامح واسترجاع إشراقة الوجه دون تدخل جراحي.</p>
+      </div>
+    </div>
+  </div>
+
+  <footer class="text-center py-4 mt-5 footer-3d">
+    <div class="container footer-inner">
+      <p class="mb-0">&copy; 2025 Cabinet Dermatologique - Tous droits réservés.</p>
+    </div>
+  </footer>
+
+  <button class="back-to-top" id="backToTop">↑</button>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  
+  <!-- Chatbot JS -->
+  <script src="chatbot.js"></script>
+  <!-- THREE.js + animations 3D -->
+  <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js" defer></script>
+  <script src="medical-animations.js" defer></script>
+  <script src="interactive-effects.js" defer></script>
+  
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const backToTop = document.getElementById('backToTop');
+      
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 300) {
+          backToTop.classList.add('show');
+        } else {
+          backToTop.classList.remove('show');
+        }
+      });
+      
+      backToTop.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+
+      // Fade-in animation
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+          }
+        });
+      }, { threshold: 0.1 });
+
+      document.querySelectorAll('.service-card').forEach(card => {
+        card.style.opacity = '0';
+        card.style.transform = 'translateY(30px)';
+        card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        observer.observe(card);
+      });
+    });
+  </script>
+</body>
+</html>

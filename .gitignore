@@ -1,0 +1,35 @@
+# Dependances
+node_modules/
+build/
+dist/
+.env
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+.venv
+
+# Base de données
+*.db
+*.sqlite
+*.sqlite3
+
+# Variables d'environnement
+.env
+.env.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
