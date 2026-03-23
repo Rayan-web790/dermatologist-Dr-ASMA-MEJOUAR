@@ -117,9 +117,22 @@ def send_email(nom, prenom, email, sujet, message):
 
 # Fonction pour sauvegarder dans la base de données
 def save_to_db(nom, prenom, email, sujet, message):
+    db_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'contact_messages.db')
     try:
-        conn = sqlite3.connect('contact_messages.db')
+        conn = sqlite3.connect(db_path)
         cursor = conn.cursor()
+        # S'assurer que la table existe (au cas où init_db aurait raté)
+        cursor.execute('''
+            CREATE TABLE IF NOT EXISTS messages (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                nom TEXT NOT NULL,
+                prenom TEXT NOT NULL,
+                email TEXT NOT NULL,
+                sujet TEXT NOT NULL,
+                message TEXT NOT NULL,
+                date_envoi TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+            )
+        ''')
         cursor.execute('''
             INSERT INTO messages (nom, prenom, email, sujet, message)
             VALUES (?, ?, ?, ?, ?)
@@ -128,8 +141,15 @@ def save_to_db(nom, prenom, email, sujet, message):
         conn.close()
         return True
     except Exception as e:
-        print(f"Erreur lors de la sauvegarde en base : {str(e)}")
-        return False
+        print(f"CRITICAL: Erreur lors de la sauvegarde en base ({db_path}) : {str(e)}")
+        # Tentative de sauvegarde de secours dans un fichier texte si la DB échoue
+        try:
+            log_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'fallback_messages.txt')
+            with open(log_path, 'a', encoding='utf-8') as f:
+                f.write(f"{datetime.now()}: {nom} {prenom} ({email}) - {sujet}: {message}\n")
+            return True # On considère que c'est "sauvegardé" si le fichier texte a fonctionné
+        except:
+            return False
 
 # Routes pour servir les pages HTML
 @app.route('/')
