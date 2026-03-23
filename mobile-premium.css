@@ -27,6 +27,10 @@
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   }
 
+  .professional-navbar .navbar-brand span {
+    font-size: 1rem !important; /* Slightly smaller for mobile fit */
+  }
+
   /* 2. HIGH-END HERO SECTION */
   .hero-section {
     min-height: 100vh !important;
