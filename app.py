@@ -246,9 +246,10 @@ def get_messages():
             'message': f'Erreur : {str(e)}'
         }), 500
 
+init_db()
+print("Base de données initialisée avec succès !")
+
 if __name__ == '__main__':
-    init_db()
-    print("Base de données initialisée avec succès !")
     port = int(os.environ.get("PORT", 5000))
     print(f"Serveur Flask démarré sur http://0.0.0.0:{port}")
     app.run(debug=True, host='0.0.0.0', port=port)
