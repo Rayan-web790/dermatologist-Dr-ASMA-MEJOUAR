@@ -68,6 +68,22 @@
       overflow: hidden;
       transition: all 0.3s ease;
     }
+    .faq-card {
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      padding: 1rem !important;
+    }
+    @media (max-width: 768px) {
+      .faq-card {
+        padding: 1.25rem !important;
+      }
+      h1 {
+        font-size: 1.8rem;
+      }
+      .accordion-button {
+        font-size: 0.95rem;
+      }
+    }
     .faq-item:hover {
       box-shadow: 0 5px 20px rgba(0,0,0,0.1);
       transform: translateY(-2px);

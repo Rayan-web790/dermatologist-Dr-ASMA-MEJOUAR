@@ -26,17 +26,20 @@
     }
     .hero-section {
       background: linear-gradient(rgba(25, 118, 210, 0.5), rgba(25, 118, 210, 0.5)), url('images/bienvenueDERMA.jpg') center center / cover no-repeat;
-      min-height: 90vh;
+      min-height: 80vh;
       display: flex;
       align-items: center;
       justify-content: center;
+      padding: 100px 0;
     }
     .hero-section h1 {
       text-shadow: 2px 2px 8px rgba(0,0,0,0.6);
       font-weight: 700;
+      font-size: clamp(2rem, 8vw, 3.5rem);
     }
     .hero-section p {
       text-shadow: 1px 1px 6px rgba(0,0,0,0.6);
+      font-size: clamp(1rem, 4vw, 1.25rem);
     }
     .content-card {
       margin-top: -150px;
@@ -65,10 +68,15 @@
     }
     @media (max-width: 768px) {
       .hero-section {
-        min-height: 70vh;
+        min-height: 60vh;
+        padding: 60px 0;
       }
       .content-card {
-        margin-top: -100px;
+        margin-top: -60px;
+        padding: 1.5rem !important;
+      }
+      .content-card h2 {
+        font-size: 1.5rem;
       }
     }
   </style>

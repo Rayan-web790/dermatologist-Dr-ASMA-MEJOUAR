@@ -264,17 +264,63 @@
   z-index: 2;
 }
 
+
 @media (max-width: 767.98px) {
   .medical-3d-banner {
-    padding: 2rem 0 2.5rem;
+    padding: 1.5rem 0 3rem;
+    min-height: 45vh;
+    display: flex;
+    align-items: center;
+  }
+
+  .medical-3d-layout {
+    grid-template-columns: 1fr;
+    gap: 1rem;
   }
 
   .medical-3d-content {
     text-align: center;
+    padding: 0 1.5rem;
+  }
+
+  .medical-3d-content h2 {
+    font-size: 1.6rem;
+    margin-top: 0.5rem;
+  }
+
+  .medical-3d-content p {
+    font-size: 0.95rem;
+    line-height: 1.4;
   }
 
   .medical-3d-content .highlights {
     justify-content: center;
+    gap: 0.5rem;
+  }
+
+  .medical-3d-content .highlights span {
+    font-size: 0.8rem;
+    padding: 0.3rem 0.7rem;
+  }
+
+  .medical-3d-canvas {
+    min-height: 200px;
+    margin-top: -1rem;
+  }
+
+  .medical-3d-side-column {
+    display: none !important;
+  }
+}
+
+/* Fix for Back to Top Button overlap */
+@media (max-width: 768px) {
+  .back-to-top {
+    bottom: 85px !important; /* Move it up to avoid overlapping Chatbot */
+    right: 20px !important;
+    width: 45px !important;
+    height: 45px !important;
+    font-size: 20px !important;
   }
 }
 

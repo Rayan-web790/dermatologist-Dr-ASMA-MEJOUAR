@@ -28,6 +28,19 @@
       transition: transform 0.3s ease, box-shadow 0.3s ease;
       border: none;
       border-radius: 15px;
+      padding: 1rem !important;
+    }
+    @media (max-width: 768px) {
+      .service-card {
+        padding: 0.75rem !important;
+        margin-bottom: 2rem !important;
+      }
+      .service-card h2 {
+        font-size: 1.4rem;
+      }
+      .service-card img {
+        height: 180px !important;
+      }
     }
     .service-card:hover {
       transform: translateY(-5px);
