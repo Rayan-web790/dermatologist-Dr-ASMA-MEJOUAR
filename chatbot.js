@@ -76,15 +76,30 @@ class Chatbot {
   toggleChatbot() {
     const container = document.getElementById('chatbot-container');
     const toggleBtn = document.getElementById('chatbot-toggle');
+    const isMobile = window.innerWidth < 768;
     
     this.isOpen = !this.isOpen;
     
     if (this.isOpen) {
       container.classList.add('chatbot-open');
+      if (isMobile) {
+        container.style.height = '100dvh';
+        container.style.width = '100vw';
+        container.style.bottom = '0';
+        container.style.right = '0';
+        container.style.borderRadius = '0';
+      }
       toggleBtn.style.display = 'none';
       document.getElementById('chatbot-input').focus();
     } else {
       container.classList.remove('chatbot-open');
+      if (isMobile) {
+        container.style.height = '';
+        container.style.width = '';
+        container.style.bottom = '';
+        container.style.right = '';
+        container.style.borderRadius = '';
+      }
       toggleBtn.style.display = 'flex';
     }
   }

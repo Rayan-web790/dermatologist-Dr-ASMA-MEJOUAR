@@ -1,0 +1,123 @@
+
+/* ============================================================
+   MOBILE PREMIUM "MEDICAL STARTUP" REDESIGN
+   Only applies to max-width: 768px (Phones/Small Tablets)
+   ============================================================ */
+
+@media (max-width: 768px) {
+  :root {
+    --premium-blue: #1976d2;
+    --soft-blue: #e3f2fd;
+    --soft-green: #e8f5e9;
+    --card-radius: 24px;
+    --btn-radius: 14px;
+    --premium-shadow: 0 12px 30px rgba(25, 118, 210, 0.12);
+    --glass-blur: blur(12px);
+  }
+
+  body {
+    background-color: #ffffff !important; /* Clean Startup White */
+    overflow-x: hidden;
+  }
+
+  /* 1. STICKY BLUR NAVBAR */
+  .navbar.professional-navbar {
+    backdrop-filter: var(--glass-blur);
+    background: rgba(25, 118, 210, 0.85) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  /* 2. HIGH-END HERO SECTION */
+  .hero-section {
+    min-height: 100vh !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+    background: linear-gradient(135deg, rgba(25, 118, 210, 0.8), rgba(13, 71, 161, 0.9)), 
+                url('images/bienvenueDERMA.jpg') center center / cover no-repeat !important;
+    padding-top: 80px !important;
+  }
+
+  .hero-section h1 {
+    font-size: clamp(1.8rem, 9vw, 2.5rem) !important;
+    line-height: 1.2 !important;
+    padding: 0 10px;
+  }
+
+  .hero-section .btn-lg {
+    width: 90% !important;
+    padding: 18px !important;
+    border-radius: var(--btn-radius) !important;
+    font-weight: 600 !important;
+    font-size: 1.1rem !important;
+    text-transform: none !important;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2) !important;
+  }
+
+  /* 3. PREMIUM CARDS */
+  .content-card, .service-card, .specialite-card, .contact-card, .faq-card {
+    margin-top: -80px !important;
+    border-radius: var(--card-radius) !important;
+    border: none !important;
+    box-shadow: var(--premium-shadow) !important;
+    padding: 24px !important;
+    background: #ffffff !important;
+    transition: transform 0.2s ease;
+  }
+
+  .content-card:active, .service-card:active {
+    transform: scale(0.98);
+  }
+
+  h2 {
+    font-size: 1.6rem !important;
+    font-weight: 700 !important;
+    margin-bottom: 1.5rem !important;
+  }
+
+  /* 4. STICKY BOTTOM CTA */
+  .mobile-sticky-cta {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 16px 20px 24px;
+    background: linear-gradient(to top, #ffffff, rgba(255,255,255,0.9));
+    z-index: 1050;
+    box-shadow: 0 -10px 25px rgba(0,0,0,0.05);
+  }
+
+  .mobile-sticky-cta .btn {
+    width: 100%;
+    padding: 16px;
+    border-radius: var(--btn-radius);
+    font-weight: 700;
+    font-size: 1.1rem;
+    background: var(--premium-blue);
+    color: white;
+    box-shadow: 0 8px 15px rgba(25, 118, 210, 0.3);
+  }
+
+  /* 5. DISABLE THREE.JS BANNER ON MOBILE */
+  .medical-3d-banner {
+    display: none !important;
+  }
+
+  /* 6. CHATBOT MODAL FULLSCREEN */
+  #chatbot-window {
+    width: 100vw !important;
+    height: 100vh !important;
+    bottom: 0 !important;
+    right: 0 !important;
+    border-radius: 0 !important;
+  }
+
+  .chatbot-toggle {
+    bottom: 100px !important; /* Position it above the sticky CTA */
+    right: 20px !important;
+    width: 50px !important;
+    height: 50px !important;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15) !important;
+  }
+}

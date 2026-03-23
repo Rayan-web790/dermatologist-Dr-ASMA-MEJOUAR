@@ -202,6 +202,12 @@
       return;
     }
 
+    // Performance Optimization: Disable heavy 3D on mobile
+    if (window.innerWidth < 768) {
+      console.log('Mobile device detected: 3D animations disabled for premium performance.');
+      return;
+    }
+
     document.querySelectorAll(SECTION_SELECTOR).forEach((section) => {
       if (!section.dataset.initialized) {
         section.dataset.initialized = 'true';
